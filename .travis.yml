@@ -5,7 +5,8 @@ deploy:
   provider: releases
   api_key:
     secure: nRP5rpLVBSVlITkBnXO1JYthWDHDJmPxFvlwea1PLAPO4aryImhmHnDkfgPcVlnllDLg+sChkTk1LYdyRxQzYjyxZWz/LPv/cPnSljETeZL9/AHBAa9Q9vlZAvFpwyCe0n8ZMj6YODR0QtjZPXGBIBx39AnDjiG1jYGoiOoQBYPI0UQQlBb+Pm7who/jga2To85KMS7VP3yKT3JvuFYCiHrE2cvLcRLZxRlD3spWvE/B3vDEOmu2VwrV2lTP37k6MYa51sMnB/Igrxjn60h5FziYnZNBVHpXlI5kIOARAv8OpvAEfLHR4b2dDX0a+jJQs7Gz+QLbx1mPj8lQYrP+68beqFGRgzK2oV/jzq3FoaTBT0oW212cJZrhN+8MYDig8drO+Y7upGsTE50weH2d0ew87n4oeIBQ9dtNGYI5OVgzBHCoFkaqMUFfWFZzAPECbsruhX92VD2e7ehoMfcdKaKNauS2+GnUgBuyPys2gHRSbC2sa71rTi0f3Ijb7xsN2tTKy3o/aIQMHep8wfk9EzM3D8nq4PO5piqo5na/9y6F3N3JztJbfJ9Vc66C32anMoMlUjNEDkO1YWm9UdmNmM9DPppUj5E6njDwHTN/g5mLfpJeGvN1bQUYIhDvQmx5qbx0Rc31b2KQoLXHVJEp+9tFSBPDVCo7KByZtgGwZ14=
-  name: Test ${TRAVIS_VERSION}
+  name: Test ${TRAVIS_TAG}
+  body: Hello World
   draft: true
   on:
     repo: stefandesu/testing002
