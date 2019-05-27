@@ -1,0 +1,19 @@
+{
+  "name": "testing002",
+  "version": "0.0.1",
+  "description": "Just testing stuff...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefandesu/testing002.git"
+  },
+  "author": "Stefan Peters <stefandesu@exo.pm> (https://exo.pm)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stefandesu/testing002/issues"
+  },
+  "homepage": "https://github.com/stefandesu/testing002#readme"
+}
