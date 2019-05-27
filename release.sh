@@ -25,7 +25,7 @@ fi
 echo "Creating a $semver release..."
 
 echo "- Switching to dev branch..."
-git checkout dev 2>&1 >/dev/null
+git checkout --quiet dev 2>&1 >/dev/null
 
 echo "- Running tests..."
 npm test 2>&1 >/dev/null
@@ -36,14 +36,14 @@ npm version $semver 2>&1 >/dev/null
 iferror "npm version failed, aborting."
 
 version=$(node -pe "require('./package.json').version")
-echo "- ... Version $version created!"
+echo "- ... version $version created!"
 
 echo "- Pushing dev with tags..."
-git push --tags origin dev 2>&1 >/dev/null
+git push --quiet --tags origin dev 2>&1 >/dev/null
 iferror "Pushing failed, aborting."
 
 echo "- Checking out master and merging dev into master..."
-git checkout master 2>&1 >/dev/null
+git checkout --quiet master 2>&1 >/dev/null
 git merge dev 2>&1 >/dev/null
 iferror "Merging failed, aborting."
 
@@ -52,7 +52,7 @@ git push 2>&1 >/dev/null
 iferror "Pushing failed, aborting."
 
 echo "- Going back to dev..."
-git checkout dev 2>&1 >/dev/null
+git checkout --quiet dev 2>&1 >/dev/null
 
 echo
 echo "Release $version seemed to be successful!"
