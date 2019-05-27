@@ -48,7 +48,7 @@ git merge dev 2>&1 >/dev/null
 iferror "Merging failed, aborting."
 
 echo "- Pushing master branch..."
-git push 2>&1 >/dev/null
+git push --quiet 2>&1 >/dev/null
 iferror "Pushing failed, aborting."
 
 echo "- Going back to dev..."
