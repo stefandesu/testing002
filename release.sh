@@ -31,7 +31,7 @@ npm test 2>&1 >/dev/null
 iferror "Tests failed, not creating a release."
 
 echo "- Running npm version..."
-npm version 2>&1 >/dev/null
+npm version $semver 2>&1 >/dev/null
 iferror "npm version failed, aborting."
 
 echo "- Pushing dev with tags..."
