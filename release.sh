@@ -35,7 +35,7 @@ npm version 2>&1 >/dev/null
 iferror "npm version failed, aborting."
 
 echo "- Pushing dev with tags..."
-npm push --tags origin dev 2>&1 >/dev/null
+git push --tags origin dev 2>&1 >/dev/null
 iferror "Pushing failed, aborting."
 
 echo "- Checking out master and merging dev into master..."
