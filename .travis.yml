@@ -10,5 +10,5 @@ deploy:
   draft: true
   on:
     repo: stefandesu/testing002
-    branch: dev
+    branch: master
     tags: true
