@@ -3,6 +3,7 @@
 iferror () {
   if [ $? -ne 0 ]; then
     echo "Error: $1"
+    echo "Note: The release script was aborted midway. Please make sure to clean up before trying again."
     exit 1
   fi
 }
@@ -34,6 +35,9 @@ echo "- Running npm version..."
 npm version $semver 2>&1 >/dev/null
 iferror "npm version failed, aborting."
 
+version=$(node -pe "require('./package.json').version")
+echo "- ... Version $version created!"
+
 echo "- Pushing dev with tags..."
 git push --tags origin dev 2>&1 >/dev/null
 iferror "Pushing failed, aborting."
@@ -51,9 +55,9 @@ echo "- Going back to dev..."
 git checkout dev 2>&1 >/dev/null
 
 echo
-echo "Release seemed to be successful!"
+echo "Release $version seemed to be successful!"
 echo "Next steps:"
 echo "- Update master instance on esx-206 (\"./update.sh cocoda\")."
-echo "- Wait until Travis is finished and edit and publish the release draft under https://github.com/gbv/cocoda/releases."
+echo "- Wait until Travis is finished and edit and publish the release draft for $version under https://github.com/gbv/cocoda/releases."
 echo "- Optional: Create new screencast with updates."
 echo "- Post about update on social media."
