@@ -21,6 +21,11 @@ iferror () {
   fi
 }
 
+waitforenter () {
+  echo "Note that aborting this script results in unfinished changes in your local and possibly the remote repository."
+  read -p "Error: $1, press enter to try again."
+}
+
 # 1. Check parameter
 semver=$1
 if [[ $semver != major && $semver != minor && $semver != patch ]] ; then
@@ -64,16 +69,25 @@ fi
 
 echo "- Pushing dev with tags..."
 git push --quiet --tags origin dev 2>&1 >/dev/null
-iferror "Pushing failed, aborting."
+while [ $? -ne 0 ]; do
+  waitforenter "Pushing dev failed"
+  git push --tags origin dev
+done
 
 echo "- Checking out master and merging dev into master..."
 git checkout --quiet master 2>&1 >/dev/null
 git merge dev 2>&1 >/dev/null
-iferror "Merging failed, aborting."
+while [ $? -ne 0 ]; do
+  waitforenter "Merging failed"
+  git merge dev
+done
 
 echo "- Pushing master branch..."
 git push --quiet 2>&1 >/dev/null
-iferror "Pushing failed, aborting."
+while [ $? -ne 0 ]; do
+  waitforenter "Pushing master failed"
+  git push
+done
 
 echo "- Going back to dev..."
 git checkout --quiet dev 2>&1 >/dev/null
