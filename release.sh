@@ -55,7 +55,7 @@ iferror "npm version failed, aborting."
 version=$(node -pe "require('./package.json').version")
 echo "- ... version $version created!"
 
-read -p "Are you sure to push and release version $version? " -n 1 -r
+read -p "Are you sure to push and release version $version? (N/y) " -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
   revertversion $version
