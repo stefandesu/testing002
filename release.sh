@@ -2,7 +2,7 @@
 
 revertversion () {
   # Delete tag
-  git tag -d $1
+  git tag -d $(git describe --tags)
   # Revert commit
   git reset --hard HEAD~1
   if [ $? -ne 0 ]; then
@@ -58,7 +58,7 @@ echo "- ... version $version created!"
 read -p "Are you sure to push and release version $version? (N/y) " -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
-  revertversion $version
+  revertversion
   exit 1
 fi
 
