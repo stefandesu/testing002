@@ -1,5 +1,18 @@
 #!/bin/bash
 
+revertversion () {
+  # Delete tag
+  git tag -d $1
+  # Revert commit
+  git reset --hard HEAD~1
+  if [ $? -ne 0 ]; then
+    echo "Error: Reverting version commit failed. Please make sure to clean up your local repository manually."
+  else
+    version=$(node -pe "require('./package.json').version")
+    echo "Version was reverted back to $version."
+  fi
+}
+
 iferror () {
   if [ $? -ne 0 ]; then
     echo "Error: $1"
@@ -41,6 +54,13 @@ iferror "npm version failed, aborting."
 
 version=$(node -pe "require('./package.json').version")
 echo "- ... version $version created!"
+
+read -p "Are you sure to push and release version $version? " -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+  revertversion $version
+  exit 1
+fi
 
 echo "- Pushing dev with tags..."
 git push --quiet --tags origin dev 2>&1 >/dev/null
