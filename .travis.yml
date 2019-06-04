@@ -10,6 +10,7 @@ deploy:
   body: Hello World
   file: test.zip
   draft: true
+  skip_cleanup: true
   on:
     repo: stefandesu/testing002
     tags: true
